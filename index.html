@@ -10,6 +10,23 @@
 </head>
 
 <body>
+  <script>
+    // 写真以外の部分をタップした際に閉じる
+    document.addEventListener('click', function(e) {
+      var spotlight = document.getElementById('spotlight');
+      if (!spotlight || !spotlight.classList.contains('show')) return;
+
+      // 写真（img/video）またはコントロールボタンをクリックした場合は閉じない
+      if (e.target.closest('.spl-pane img, .spl-pane video') ||
+          e.target.closest('.spl-header, .spl-footer, .spl-prev, .spl-next')) {
+        return;
+      }
+
+      if (window.Spotlight) {
+        window.Spotlight.close();
+      }
+    });
+  </script>
   <div class="gallery spotlight-group" data-control="close,prev,next">
     <a href="img/01.jpg" class="spotlight"><img src="img/01.jpg"></a>
     <a href="img/02.jpg" class="spotlight"><img src="img/02.jpg"></a>
